@@ -6,9 +6,15 @@
 local Module = { }
 
 function Module:register(modula, parameters)
-    modula:registerForEvents({"onStart", "onStop", "onCommand"}, self)
+    self.called = {}
+
+    modula:registerForEvents({"onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate"}, self)
     modula:registerService("test", self)
 end
+
+-- ---------------------------------------------------------------------
+-- Example event handlers
+-- ---------------------------------------------------------------------
 
 function Module:onStart()
     debug("Test module was started")
@@ -24,6 +30,23 @@ function Module:onCommand(command, arguments)
         print("Hello from the test module")
     end
 end
+
+function Module:onFastUpdate()
+    self:reportCalled("onFastUpdate")
+end
+
+function Module:onSlowUpdate()
+    self:reportCalled("onSlowUpdate")
+end
+
+function Module:onFlush()
+    self:reportCalled("onFlush")
+end
+
+function Module:onUpdate()
+    self:reportCalled("onUpdate")
+end
+
 
 -- ---------------------------------------------------------------------
 -- Example action handlers
@@ -53,5 +76,13 @@ function Module:longPressTest()
     print("long press")
 end
 
+-- ---------------------------------------------------------------------
+
+function Module:reportCalled(handler)
+    if not self.called[handler] then
+        self.called[handler] = true
+        print("%s called", handler)
+    end
+end
 
 return Module
