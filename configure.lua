@@ -9,7 +9,8 @@ modulaSettings = {
     logElements = logElements, 
     useLocal = useLocal,
     modules = {
-        ["samedicorp.modula-test.module"] = {}
+        ["samedicorp.modula-test.module"] = {},
+        ["samedicorp.modula.modules.display"] = {}
     },
     actions = {
         brake = {
