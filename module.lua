@@ -19,11 +19,11 @@ end
 function Module:onStart()
     debug("Test module was started")
 
-    local display = self.modula:getService("display")
-    if display then
-        print("found display service")
-        display:addPanel("test", "Test")
-        display:addWidgets("test", "text", { 
+    local panels = self.modula:getService("panels")
+    if panels then
+        print("found panels service")
+        panels:addPanel("test", "Test")
+        panels:addWidgets("test", "text", { 
             "velocity", "acceleration", "altitude", "target", "braking", "stall", "fuel"
         })
     end

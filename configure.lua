@@ -10,7 +10,8 @@ modulaSettings = {
     useLocal = useLocal,
     modules = {
         ["samedicorp.modula-test.module"] = {},
-        ["samedicorp.modula.modules.display"] = {}
+        ["samedicorp.modula.modules.panels"] = {},
+        ["samedicorp.modula.modules.screen"] = {}
     },
     actions = {
         brake = {
