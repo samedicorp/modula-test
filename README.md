@@ -6,12 +6,13 @@ This example shows how to create a modula module, and how to create and build a 
 
 ## Introduction
 
-To create a script with Modula, you need the following:
+To develop a script with Modula, you need the following:
 
 - Modula must be installed in the game folder at `Game/data/lua/samedicorp/modula`. You can do this by downloading a zip from github, or by cloning it with git. 
 - A construct folder containing the code for your construct (like the one that this README file is in).
 - A `configure.lua` file at the root level of the construct folder. This tells Modula which modules you want to use, and allows you to set parameters on them.
 - (Optionally) one or more custom modules. These can live anywhere in your construct folder, but typically the root is fine.
+- You also need to meet [Modula's requirements](https://github.com/samedicorp/modula#requirements).
 
 ## Configuration
 
