@@ -1,3 +1,0 @@
-require("configure")
-
-print(modulaSettings)

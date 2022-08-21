@@ -1,11 +1,12 @@
-local devMode = true --export: Use locally installed scripts if present.
-local logging = true --export: Enable controller debug output.
-local logElements = true --export: Log all discovered elements.
+local useLocal = false --export: Use locally installed scripts if present.
+local logging = false --export: Enable controller debug output.
+local logElements = false --export: Log all discovered elements.
 
 modulaSettings = { 
+    name = "Test Construct",
     logging = logging, 
     logElements = logElements, 
-    devMode = devMode,
+    useLocal = useLocal,
     modules = {
         ["samedicorp.modula-test.module"] = {}
     }
