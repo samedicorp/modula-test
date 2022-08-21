@@ -52,3 +52,23 @@ modulaSettings = {
     }
 }
 ```
+
+## Building
+
+If you are using Visual Studio Code, you should just be able to hit Ctrl-Shift-B. This will run the pack script, and will write `.conf` and `.json` versions of the script into the game folder at `Game/lua/autoconf/custom/`.
+
+You can then install the script in the game, either with the `Run custom autoconfigure`, or `Paste Lua configuration from Clipboard` menu commands.
+
+## Development
+
+Having to pack and re-install scripts after every change is a massive pain in the arse.
+
+Modula was designed to avoid this. 
+
+The packed script can be configured in a way that makes it standalone (so that other people can just use it, and it works on Geforce Now), but where it will automatically load a local version of the code and all modules at runtime (using `require`). 
+
+If you turn this mode on, then in most situations you will simply be able to edit module source code and re-run the script in game; no re-packing necessary. 
+
+## Distribution 
+
+Once you are ready to release your script, you can simply pack it and distribute the `.conf` and/or `.json` versions. Users of these versions don't need to install anything on their machine.
