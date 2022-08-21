@@ -1,4 +1,4 @@
-local useLocal = false --export: Use locally installed scripts if present.
+local useLocal = false --export: Use require() to load local scripts if present. Useful during development.
 local logging = false --export: Enable controller debug output.
 local logElements = false --export: Log all discovered elements.
 
