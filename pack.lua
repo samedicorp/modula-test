@@ -1,0 +1,3 @@
+require("configure")
+
+print(modulaSettings)
