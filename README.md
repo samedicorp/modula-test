@@ -28,11 +28,15 @@ modulaSettings = {
     }
 }
 ```
-### Modules
+### Configuring Modules
 
-The `modules` property of the settings should be a table. The keys of this table are the names of the modules you want to use. These should be written as if you were passing them into a `require()` call (e.g: if your module is located at `lua/myconstruct/mymodule.lua`, the key would be `myconstruct.mymodule`). Each of the values of the table should be another table containing settings for that module. Precisely what you put in each of these depends on the module in question. 
+Each module in Modula is a Lua object that provides some functionality to the overall script. See [the Modula docs](https://github.com/samedicorp/modula#modules) for more information.
 
-### DU Lua Parameters
+The `modules` property of the settings should be a table. The keys of this table are the names of the modules you want to use. 
+
+These key names should be written as if you were passing them into a `require()` call (e.g: if your module is located at `lua/myconstruct/mymodule.lua`, the key would be `myconstruct.mymodule`). Each of the values of the table should be another table containing settings for that module. Precisely what you put in each of these depends on the module in question. 
+
+### Configuring Parameters
 
 All the code in this file will be included in the `unit.onStart` handler. 
 
