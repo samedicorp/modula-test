@@ -19,13 +19,19 @@ end
 function Module:onStart()
     debug("Test module was started")
 
+    self.elapsed = 1
+
     local panels = self.modula:getService("panels")
     if panels then
         print("found panels service")
-        panels:addPanel("test", "Test")
-        panels:addWidgets("test", "text", { 
-            "velocity", "acceleration", "altitude", "target", "braking", "stall", "fuel"
+        self.panel = panels:addPanel("test", "Test")
+        self.widgets = self.panel:addWidgets({
+            foo = { value = "This is some text" },
+            bar = { label = "Speed", units = "m/s" },
+            elapsed = { label = "Time" }
         })
+
+        self.widgets.bar:update(1.23)
     end
 
     player.freeze(1)
@@ -46,6 +52,8 @@ function Module:onFastUpdate()
 end
 
 function Module:onSlowUpdate()
+    self.elapsed = self.elapsed + 1
+    self.widgets.elapsed:updateTime(self.elapsed)
     self:reportCalled("onSlowUpdate")
 end
 
