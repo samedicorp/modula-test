@@ -1,6 +1,6 @@
 local useLocal = true --export: Use require() to load local scripts if present. Useful during development.
 local logging = true --export: Enable controller debug output.
-local logElements = true --export: Log all discovered elements.
+local logElements = false --export: Log all discovered elements.
 
 modulaSettings = { 
     name = "Test Construct",
@@ -11,7 +11,7 @@ modulaSettings = {
     modules = {
         ["samedicorp.modula-test.module"] = { left="39vw", top="9vh" },
         ["samedicorp.modula.modules.panels"] = {},
-        ["samedicorp.modula.modules.screen"] = {}
+        ["samedicorp.modula.modules.windows"] = {}
     },
     actions = {
         brake = {

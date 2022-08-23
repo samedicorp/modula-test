@@ -19,7 +19,7 @@ function Module:register(modula, parameters)
         name = "Test Window",
     }
 
-    modula:registerForEvents({"onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate", "onUpdateWindow"}, self)
+    modula:registerForEvents({"onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate", "onUpdateWindows"}, self)
     modula:registerService("test", self)
 end
 
@@ -42,10 +42,9 @@ function Module:onStart()
         self.widgets.bar:update(1.23)
     end
 
-    local screen = self.modula:getService("screen")
-    if screen then
-        screen:addWindow(self.window)
-        self.screen = screen
+    local windows = self.modula:getService("windows")
+    if windows then
+        windows:addWindow(self.window)
     end
 
     player.freeze(1)
@@ -79,7 +78,7 @@ function Module:onUpdate()
     self:reportCalled("onUpdate")
 end
 
-function Module:onUpdateWindow(screen)
+function Module:onUpdateWindows(windows)
     local html = [[
         <style>
         .altimeter .label  { text-anchor: start; }
@@ -120,7 +119,7 @@ function Module:onUpdateWindow(screen)
 
     local window = self.window
     local content = html:format(window.width, window.height, linesHTML, math.floor(altitude))
-    screen:updateWindow(window, content)
+    window:update(content)
 end
 
 -- ---------------------------------------------------------------------
