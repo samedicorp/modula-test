@@ -8,8 +8,18 @@ local Module = { }
 function Module:register(modula, parameters)
     self.called = {}
     self.elapsed = 1
+    self.altitude = 1234
 
-    modula:registerForEvents({"onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate"}, self)
+    self.window = {
+        left = parameters.left or "2vw",
+        top = parameters.top or "9vh",
+        width = parameters.width or "4vw",
+        height = parameters.height or "12vw",
+        position = parameters.position or "absolute",
+        name = "Test Window",
+    }
+
+    modula:registerForEvents({"onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate", "onUpdateWindow"}, self)
     modula:registerService("test", self)
 end
 
@@ -34,14 +44,8 @@ function Module:onStart()
 
     local screen = self.modula:getService("screen")
     if screen then
-        local window = self._window
-        window.width = window.width or "4vw"
-        window.height = window.height or "12vw"
-        window.position = window.position or "absolute"
-        window.content = ""
-        window.name = "airspeed"
-    
-        screen:addWindow(window)
+        screen:addWindow(self.window)
+        self.screen = screen
     end
 
     player.freeze(1)
@@ -75,6 +79,49 @@ function Module:onUpdate()
     self:reportCalled("onUpdate")
 end
 
+function Module:onUpdateWindow(screen)
+    local html = [[
+        <style>
+        .altimeter .label  { text-anchor: start; }
+        .altimeter .value { text-anchor: end; }
+        </style>
+
+        <svg class="altimeter" width='%s' height='%s' viewbox='0 0 220 1000'>
+            %s
+            <line class="margin" x1="0" y1="0" x2="0" y2="1000" />
+            <path class="box" d="M20 500 L70 530 L220 530 L220 470 L70 470 L20 500" />
+            <text class="value" x="200" y="500">%s</text>
+        </svg> 
+    ]]
+
+    local altitude = 199
+
+    local step
+    local altAbs = math.abs(altitude)
+    if altAbs < 1000 then
+        step = 10
+    elseif altAbs < 10000 then
+        step = 100
+    else
+        step = 1000
+    end
+    local altFloor = math.floor(altitude/step)*step
+    local altMin = altFloor - (step * 5)
+    local offset = ((altitude - altFloor) * 100) / step
+
+    local lines = {}
+    local label = altMin
+    for n = 0, 1000, 100 do
+        local line = string.format('<line class="mark" x1="0" y1="%s" x2="30" y2="%s" /><text class="label" x="40" y="%s">%s</text>', n + offset, n + offset, (1000 - n) + 8 + offset, label)
+        label = label + step
+        table.insert(lines, line)
+    end
+    local linesHTML = table.concat(lines, "\n")
+
+    local window = self.window
+    local content = html:format(window.width, window.height, linesHTML, math.floor(altitude))
+    screen:updateWindow(window, content)
+end
 
 -- ---------------------------------------------------------------------
 -- Example action handlers
@@ -112,5 +159,6 @@ function Module:reportCalled(handler)
     --     printf("%s called", handler)
     -- end
 end
+
 
 return Module

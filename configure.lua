@@ -9,7 +9,7 @@ modulaSettings = {
     logElements = logElements, 
     useLocal = useLocal,
     modules = {
-        ["samedicorp.modula-test.module"] = {},
+        ["samedicorp.modula-test.module"] = { left="39vw", top="9vh" },
         ["samedicorp.modula.modules.panels"] = {},
         ["samedicorp.modula.modules.screen"] = {}
     },
