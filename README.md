@@ -60,7 +60,9 @@ modulaSettings = {
 
 ## Building
 
-If you are using Visual Studio Code, you should just be able to hit Ctrl-Shift-B. This will run the pack script, and will write `.conf` and `.json` versions of the script into the game folder at `Game/lua/autoconf/custom/`.
+If you are using Visual Studio Code, you should just be able to hit Ctrl-Shift-B. 
+
+This will run the pack script, and will write `.conf` and `.json` versions of the script into the game folder at `Game/lua/autoconf/custom/`. It will also copy the `.json` content into the clipboard. 
 
 You can then install the script in the game, either with the `Run custom autoconfigure`, or `Paste Lua configuration from Clipboard` menu commands.
 
