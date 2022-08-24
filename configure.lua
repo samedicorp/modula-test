@@ -12,7 +12,7 @@ modulaSettings = {
         ["samedicorp.modula-test.module"] = { left="39vw", top="9vh" },
         ["samedicorp.modula.modules.panels"] = {},
         ["samedicorp.modula.modules.windows"] = {},
-        ["samedicorp.modula.modules.console"] = {}
+        ["samedicorp.modula.modules.console"] = { name = "console" }
     },
     actions = {
         brake = {
