@@ -20,7 +20,7 @@ function Module:register(modula, parameters)
     }
 
     modula:registerForEvents(self, "onStart", "onStop", "onCommand", "onFlush", "onUpdate", "onSlowUpdate", "onFastUpdate", "onUpdateWindows")
-    modula:registerService("test", self)
+    modula:registerService(self, "test")
 end
 
 -- ---------------------------------------------------------------------
